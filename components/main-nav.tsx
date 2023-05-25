@@ -1,23 +1,30 @@
+"use client"
+
 import * as React from "react"
+import Image from "next/image"
 import Link from "next/link"
+import { useTheme } from "next-themes"
 
 import { NavItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-import { Icons } from "@/components/icons"
 
 interface MainNavProps {
   items?: NavItem[]
 }
 
 export function MainNav({ items }: MainNavProps) {
+  const { theme } = useTheme()
+
   return (
-    <div className="flex gap-6 md:gap-10">
+    <div className="flex gap-6 md:gap-10 items-center">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <Icons.logo className="h-6 w-6" />
-        <span className="hidden font-bold sm:inline-block">
-          {siteConfig.name}
-        </span>
+        <Image
+          src={theme === "light" ? "/logo-light.png" : "/logo-dark.png"}
+          height={48}
+          width={140}
+          alt="mindly logo "
+        />
       </Link>
       {items?.length ? (
         <nav className="hidden gap-6 md:flex">
