@@ -13,7 +13,7 @@ import PostContent from "./posts-content"
 
 export function PostsCard() {
   return (
-    <Card className="w-5xl">
+    <Card className="max-w-2xl">
       <CardHeader>
         <CardTitle>
           <AvatarWithUID />
