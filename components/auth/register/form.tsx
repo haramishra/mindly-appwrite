@@ -1,6 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Eye, EyeOff } from "lucide-react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
@@ -14,18 +16,32 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { account } from "@/components/appwrite/config"
+import { ErrorAlert } from "@/components/errorAlert"
+import UseCreateUserWithEmailPassword from "@/components/hooks/auth"
 
-const formSchema = z.object({
-  email: z.string().email(),
-  password: z
-    .string()
-    .regex(/(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/),
-  confirmPassword: z.string(),
-})
+const formSchema = z
+  .object({
+    email: z.string().email(),
+    password: z
+      .string()
+      .min(8, { message: "Password must be atleast 8 characters long" }),
+
+    confirmPassword: z.string(),
+  })
+  .refine((val) => val.password === val.confirmPassword, {
+    message: "Confirm password must be same as password",
+    path: ["confirmPassword"],
+  })
 
 //TODO: create a error handler for confirm password
 
 export function RegisterForm() {
+  const [createUserWithEmailPassword, user, loading, error] =
+    UseCreateUserWithEmailPassword(account)
+
+  const router = useRouter()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,19 +53,21 @@ export function RegisterForm() {
 
   const [showPassword, setShowPassword] = useState(false)
 
+  // console.log(form.watch("password"))
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+    createUserWithEmailPassword(values.email, values.password)
   }
 
-  console.log(form.formState.errors)
+  useEffect(() => {
+    user && router.push("/feed")
+  }, [user])
 
   return (
     <div>
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-14">
         Create Account
       </h1>
+      <div className="mb-5">{!!error && <ErrorAlert>{error}</ErrorAlert>}</div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           {/* <div className="grid grid-cols-2 gap-6">
@@ -128,7 +146,7 @@ export function RegisterForm() {
               <FormItem>
                 <FormLabel>Confirm password</FormLabel>
                 <FormControl>
-                  <div className="flex flex-col justify-end items-end">
+                  <div className="flex justify-end items-end">
                     <Input
                       placeholder="re-enter password"
                       {...field}
@@ -144,7 +162,7 @@ export function RegisterForm() {
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
                     >
-                      {showPassword ? "Hide password" : "Show password"}
+                      {showPassword ? <EyeOff /> : <Eye />}
                     </Button>
                   </div>
                 </FormControl>
@@ -154,7 +172,7 @@ export function RegisterForm() {
             )}
           />
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full" disabled={loading}>
             Create account
           </Button>
           <p className="text-md text-muted-foreground text-center">
