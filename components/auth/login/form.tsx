@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -14,42 +15,52 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { account } from "@/components/appwrite/config"
+import { ErrorAlert } from "@/components/errorAlert"
+import useLoginUserWithEmailPassword from "@/components/hooks/auth/use-login-user-with-email-password"
 
 const formSchema = z.object({
   email: z.string().email(),
   password: z
     .string()
-    .regex(/(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/),
-  confirmPassword: z.string(),
+    .min(8, { message: "Password must be atleast 8 characters long" }),
 })
 
 //TODO: create a error handler for confirm password
 
 export function LoginForm() {
+  const [loginUserWithEmailPassword, user, loading, error] =
+    useLoginUserWithEmailPassword(account)
+
+  const router = useRouter()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       password: "",
-      confirmPassword: "",
     },
   })
 
   const [showPassword, setShowPassword] = useState(false)
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+    console.log("submit")
+    loginUserWithEmailPassword(values.email, values.password)
   }
 
-  console.log(form.formState.errors)
+  useEffect(() => {
+    user && router.push("/feed")
+  }, [user])
+
+  // console.log(user)
 
   return (
     <div>
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-14">
         Login
       </h1>
+      <div className="mb-5">{!!error && <ErrorAlert>{error}</ErrorAlert>}</div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           {/* <div className="grid grid-cols-2 gap-6">
@@ -104,14 +115,24 @@ export function LoginForm() {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Password"
-                    {...field}
-                    type={showPassword ? "text" : "password"}
-                    className={
-                      form.formState.errors.password && "border-red-800"
-                    }
-                  />
+                  <div className="flex justify-end items-end">
+                    <Input
+                      placeholder="Password"
+                      {...field}
+                      type={showPassword ? "text" : "password"}
+                      className={
+                        form.formState.errors.password && "border-red-800"
+                      }
+                    />
+                    {/* <Button
+                      variant="link"
+                      className=""
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? <EyeOff /> : <Eye />}
+                    </Button> */}
+                  </div>
                 </FormControl>
 
                 <FormMessage />
@@ -119,7 +140,7 @@ export function LoginForm() {
             )}
           />
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full" disabled={loading}>
             Create account
           </Button>
           <p className="text-md text-muted-foreground text-center">
