@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react"
-import { Account, ID } from "appwrite"
+import { ID } from "appwrite"
 
 import { EmailAndPasswordActionHook, UserObject } from "../types/auth"
 
