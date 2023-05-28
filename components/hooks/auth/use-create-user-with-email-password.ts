@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react"
 import { ID } from "appwrite"
 
-import { EmailAndPasswordActionHook, UserObject } from "../../types/auth"
+import { EmailAndPasswordActionHook, UserObject } from "@/types/auth"
 
 function UseCreateUserWithEmailPassword(
   account: any
