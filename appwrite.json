@@ -1,0 +1,21 @@
+{
+    "projectId": "6469d95c97eca88d135c",
+    "projectName": "mindly",
+    "functions": [
+        {
+            "$id": "createUser",
+            "name": "create-user",
+            "runtime": "node-16.0",
+            "path": "functions/create-user",
+            "entrypoint": "src/index.js",
+            "ignore": [
+                "node_modules",
+                ".npm"
+            ],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        }
+    ]
+}
