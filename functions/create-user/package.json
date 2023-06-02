@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-appwrite": "^8.0.0"
+    "axios": "^1.4.0",
+    "node-appwrite": "^8.0.0",
+    "node-fetch": "^2.6.11",
+    "unique-names-generator": "^4.7.1"
   }
 }
