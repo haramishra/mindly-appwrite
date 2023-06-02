@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 
-import { EmailAndPasswordActionHook, UserObject } from "@/components/types/auth"
+import { EmailAndPasswordActionHook, UserObject } from "@/types/auth"
 
 function useLoginUserWithEmailPassword(
   account: any
@@ -18,7 +18,8 @@ function useLoginUserWithEmailPassword(
       const promise = account.createEmailSession(email, password)
       promise.then(
         function (res: UserObject | undefined) {
-          setUser(res) // Success
+          setUser(res)
+           // Success
           setLoading(false)
         },
         function (error: any) {
