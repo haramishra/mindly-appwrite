@@ -1,10 +1,3 @@
-"use client"
-
-import Link from "next/link"
-
-import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
-import { Register } from "@/components/auth/register"
 import { SiteHeader } from "@/components/site-header"
 
 export default function IndexPage() {
