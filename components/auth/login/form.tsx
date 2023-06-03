@@ -50,7 +50,12 @@ export function LoginForm() {
   }
 
   useEffect(() => {
-    user && router.push("/feed")
+    if (user && !loading) {
+      fetch("/api/login", {
+        method: "POST",
+        body: JSON.stringify({ session: user.$id }),
+      })
+    }
   }, [user])
 
   // console.log(user)
