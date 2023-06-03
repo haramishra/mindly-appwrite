@@ -1,11 +1,12 @@
 import { useCallback, useState } from "react"
 
-import { EmailAndPasswordActionHook, UserObject } from "@/types/auth"
+import { EmailAndPasswordLoginActionHook } from "@/types/login"
+import { SessionObject } from "@/types/session"
 
 function useLoginUserWithEmailPassword(
   account: any
-): EmailAndPasswordActionHook {
-  const [user, setUser] = useState<undefined | UserObject>(undefined)
+): EmailAndPasswordLoginActionHook {
+  const [user, setUser] = useState<undefined | SessionObject>(undefined)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<undefined | string>(undefined)
 
@@ -13,13 +14,13 @@ function useLoginUserWithEmailPassword(
     (email: string, password: string) => void
   >(
     (email: string, password: string) => {
-        console.log("fireing")
+      console.log("fireing")
       setLoading(true)
       const promise = account.createEmailSession(email, password)
       promise.then(
-        function (res: UserObject | undefined) {
+        function (res: SessionObject | undefined) {
           setUser(res)
-           // Success
+          // Success
           setLoading(false)
         },
         function (error: any) {
