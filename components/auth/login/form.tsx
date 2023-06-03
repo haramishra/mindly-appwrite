@@ -53,8 +53,8 @@ export function LoginForm() {
     if (user && !loading) {
       fetch("/api/login", {
         method: "POST",
-        body: JSON.stringify({ session: user.$id }),
-      })
+        body: JSON.stringify({ sessionID: user.$id }),
+      }).then((res) => router.replace("/feed"))
     }
   }, [user])
 
