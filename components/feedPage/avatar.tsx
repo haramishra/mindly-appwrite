@@ -10,9 +10,9 @@ export function UserAvatar(props: { src: string; fallbackText: string }) {
 }
 
 function AvatarWithUID(props: {
-  name: string
-  subtext: string
-  image: string
+  name?: string
+  subtext?: string
+  image?: string
 }) {
   const placeholderImg =
     "https://api.dicebear.com/6.x/lorelei/svg?seed=Spooky&backgroundType=gradientLinear&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf"
