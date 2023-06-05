@@ -146,7 +146,7 @@ export function LoginForm() {
           />
 
           <Button type="submit" className="w-full" disabled={loading}>
-            Create account
+            Login
           </Button>
           <p className="text-md text-muted-foreground text-center">
             Don't have an account?{" "}
