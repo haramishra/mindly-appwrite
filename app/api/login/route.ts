@@ -1,4 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from "next"
 import { cookies } from "next/headers"
 
 export async function POST(req: Request) {
