@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -16,9 +18,10 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { account } from "@/components/appwrite/config"
+import { account, functions } from "@/components/appwrite/config"
 import { ErrorAlert } from "@/components/errorAlert"
 import UseCreateUserWithEmailPassword from "@/components/hooks/auth/use-create-user-with-email-password"
+import useLoginUserWithEmailPassword from "@/components/hooks/auth/use-login-user-with-email-password"
 
 const formSchema = z
   .object({
@@ -39,6 +42,8 @@ const formSchema = z
 export function RegisterForm() {
   const [createUserWithEmailPassword, user, loading, error] =
     UseCreateUserWithEmailPassword(account)
+  const [loginUserWithEmailPassword, loginUser, loginLoading, loginError] =
+    useLoginUserWithEmailPassword(account)
 
   const router = useRouter()
 
@@ -53,14 +58,31 @@ export function RegisterForm() {
 
   const [showPassword, setShowPassword] = useState(false)
 
+  console.log(loginError)
+
   // console.log(form.watch("password"))
   function onSubmit(values: z.infer<typeof formSchema>) {
     createUserWithEmailPassword(values.email, values.password)
+    // loginUserWithEmailPassword(values.email, values.password)
   }
 
   useEffect(() => {
-    user && router.push("/feed")
+    if (user) {
+      loginUserWithEmailPassword(
+        form.getValues("email"),
+        form.getValues("password")
+      )
+    }
   }, [user])
+
+  useEffect(() => {
+    if (loginUser) {
+      fetch("/api/login", {
+        method: "POST",
+        body: JSON.stringify({ sessionID: user?.$id }),
+      }).then((res) => router.replace("/feed"))
+    }
+  }, [loginUser])
 
   return (
     <div>
@@ -172,7 +194,11 @@ export function RegisterForm() {
             )}
           />
 
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button
+            type="submit"
+            className="w-full"
+            disabled={loading || loginLoading}
+          >
             Create account
           </Button>
           <p className="text-md text-muted-foreground text-center">
