@@ -1,13 +1,16 @@
-import { cookies } from "next/headers"
-import { NextResponse } from "next/server"
+import { NextRequest } from "next/server"
 
-export async function GET() {
-  const cookieStore = cookies()
+export async function POST(req: NextRequest) {
+  const cookieStore = req.cookies
 
-  const authCookie = cookieStore.get("auth-session")
+  try {
+    const authCookie = cookieStore.get("auth-session")
+    console.log(authCookie)
 
-  if (authCookie?.value) {
-    return NextResponse.json({ session: authCookie }, { status: 200 })
+    if (authCookie?.value) {
+      return new Response(JSON.stringify({ auth: "authCookie" }))
+    }
+  } catch (error) {
+    return new Response(JSON.stringify({ error: "auth cookie not found" }))
   }
-  return NextResponse.json({ error: "token not tound" }, { status: 400 })
 }
