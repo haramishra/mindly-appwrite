@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react"
 import { Query } from "appwrite"
 
+import { Post } from "@/types/post"
+
 import {
   MINDLY_DB_DATABASE_ID,
   POSTS_COLLECTION_ID,
@@ -56,7 +58,7 @@ export function FeedPage() {
     <div>
       <div className="md:flex gap-12">
         <div>
-          <AddPost />
+          <AddPost add={(newPost: Post) => setPosts([newPost, ...posts])} />
           {posts.map((post: any, i: number) => (
             <div key={i}>
               <PostsCard {...post} />

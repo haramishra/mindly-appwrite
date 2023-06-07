@@ -8,6 +8,7 @@ import { Check, ChevronsUpDown } from "lucide-react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
+import { Post } from "@/types/post"
 import { cn } from "@/lib/utils"
 import {
   Form,
@@ -67,7 +68,7 @@ const FormSchema = z.object({
     required_error: "Please select a tag.",
   }),
 })
-function AddPost() {
+function AddPost(props: { add: (post: any) => void }) {
   const [showInputs, setShowInputs] = useState(false)
 
   const router = useRouter()
@@ -78,7 +79,6 @@ function AddPost() {
       content: "",
       title: "",
       nsfw: false,
-      tag: "",
     },
   })
   const cleanup = () => {
@@ -109,7 +109,7 @@ function AddPost() {
           function (response) {
             console.log(response) // Success
             cleanup()
-            router.refresh()
+            props.add(response)
           },
           function (error) {
             console.log(error) // Failure
