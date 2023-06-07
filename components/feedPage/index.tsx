@@ -16,7 +16,7 @@ import { PostsCard } from "./posts-card"
 import RightContainer from "./right-container"
 
 export function FeedPage() {
-  const limit = 1
+  const limit = 10
   const [posts, setPosts] = useState<any>([])
   const [offset, setOffset] = useState(0)
   const [user, loading, error] = useGetCurrentUser(account)
@@ -27,9 +27,9 @@ export function FeedPage() {
     const postData = await database.listDocuments(
       MINDLY_DB_DATABASE_ID,
       POSTS_COLLECTION_ID,
-      [Query.limit(limit), Query.offset(offset)]
+      [Query.limit(limit), Query.offset(offset), Query.orderDesc("$updatedAt")]
     )
-    console.log(postData)
+    // console.log(postData)
     setPosts([...posts, ...postData.documents])
     setTotalPosts(postData.total)
   }
@@ -48,7 +48,7 @@ export function FeedPage() {
   useEffect(() => {
     if (user) {
       getPosts()
-      console.log(posts)
+      // console.log(posts)
     }
   }, [user])
 
@@ -57,9 +57,9 @@ export function FeedPage() {
       <div className="md:flex gap-12">
         <div>
           <AddPost />
-          {posts.map((item: any, i: number) => (
+          {posts.map((post: any, i: number) => (
             <div key={i}>
-              <PostsCard />
+              <PostsCard {...post} />
             </div>
           ))}
           <Button onClick={loadMorePosts}>Load more</Button>
