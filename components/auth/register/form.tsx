@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { account, functions } from "@/components/appwrite/config"
-import { ErrorAlert } from "@/components/errorAlert"
+import { ErrorAlert } from "@/components/error-alert"
 import UseCreateUserWithEmailPassword from "@/components/hooks/auth/use-create-user-with-email-password"
 import useLoginUserWithEmailPassword from "@/components/hooks/auth/use-login-user-with-email-password"
 

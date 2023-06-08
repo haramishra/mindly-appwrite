@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { account } from "@/components/appwrite/config"
-import { ErrorAlert } from "@/components/errorAlert"
+import { ErrorAlert } from "@/components/error-alert"
 import useLoginUserWithEmailPassword from "@/components/hooks/auth/use-login-user-with-email-password"
 
 const formSchema = z.object({
