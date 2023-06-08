@@ -58,7 +58,10 @@ export function FeedPage() {
     <div>
       <div className="md:flex gap-12">
         <div>
-          <AddPost add={(newPost: Post) => setPosts([newPost, ...posts])} />
+          <AddPost
+            add={(newPost: Post) => setPosts([newPost, ...posts])}
+            currentUser={user}
+          />
           {posts.map((post: any, i: number) => (
             <div key={i}>
               <PostsCard {...post} />

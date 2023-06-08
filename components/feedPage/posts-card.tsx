@@ -1,3 +1,4 @@
+import { Post } from "@/types/post"
 import {
   Card,
   CardContent,
@@ -11,17 +12,16 @@ import AvatarWithUID from "./avatar"
 import PostsBUttons from "./posts-card-footer"
 import PostContent from "./posts-content"
 
-export function PostsCard() {
+export function PostsCard(props: Post) {
   return (
     <Card className="max-w-2xl">
       <CardHeader>
         <CardTitle>
           <AvatarWithUID />
         </CardTitle>
-        {/* <CardDescription>You have 3 unread messages.</CardDescription> */}
       </CardHeader>
       <CardContent>
-        <PostContent />
+        <PostContent content={props.content} title={props.title} />
       </CardContent>
       <CardFooter>
         <PostsBUttons />

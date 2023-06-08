@@ -1,11 +1,11 @@
 import { Badge } from "@/components/ui/badge"
 
-function PostContent() {
+function PostContent(props: { content: string; title: string }) {
   return (
     <div>
       <div className="mb-4">
         <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-          Your company need a website.
+          {props.title}
           <span className="ml-4 space-x-3">
             <Badge
               className="text-sm  font-normal border-red-700 text-red-700"
@@ -23,14 +23,8 @@ function PostContent() {
         </h3>
       </div>
       <div className="space-y-3 dark:text-slate-50">
-        <p className="leading-7 [&:not(:first-child)]:mt-3">
-          The king, seeing how much happier his subjects were, realized the
-          error of his ways and repealed the joke tax. The king, seeing how much
-          happier
-        </p>
-        <p className="leading-7 [&:not(:first-child)]:mt-3">
-          his subjects were, realized the error of his ways and repealed the
-          joke tax.The king,
+        <p className="leading-7 whitespace-pre-line [&:not(:first-child)]:mt-3">
+          {props.content}
         </p>
       </div>
     </div>
