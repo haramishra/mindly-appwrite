@@ -3,11 +3,12 @@
 import { useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ID } from "appwrite"
+import { ID, Permission, Role } from "appwrite"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
+import { UserObject } from "@/types/auth"
 import { Post } from "@/types/post"
 import { cn } from "@/lib/utils"
 import {
@@ -68,7 +69,10 @@ const FormSchema = z.object({
     required_error: "Please select a tag.",
   }),
 })
-function AddPost(props: { add: (post: any) => void }) {
+function AddPost(props: {
+  add: (post: any) => void
+  currentUser: UserObject | undefined
+}) {
   const [showInputs, setShowInputs] = useState(false)
 
   const router = useRouter()
@@ -87,36 +91,34 @@ function AddPost(props: { add: (post: any) => void }) {
   }
 
   function onSubmit(values: z.infer<typeof FormSchema>) {
-    const accPromise = account.get()
-    accPromise
-      .then((result) => {
-        const body = {
-          content: values.content,
-          title: values.title,
-          userId: result.$id,
-          name: result.name,
-          nsfw: values.nsfw,
-        }
-        console.log(body)
-        const dbPromise = database.createDocument(
-          "6469db4675eba906b2ff",
-          "6469db77d5fa468db513",
-          ID.unique(),
-          body
-        )
+    if (props.currentUser) {
+      const body = {
+        content: values.content,
+        title: values.title,
+        userId: props.currentUser.$id,
+        name: props.currentUser.name,
+        nsfw: values.nsfw,
+      }
+      console.log(body)
+      const dbPromise = database.createDocument(
+        "6469db4675eba906b2ff",
+        "6469db77d5fa468db513",
+        ID.unique(),
+        body,
+        [Permission.delete(Role.user(props.currentUser.$id))]
+      )
 
-        dbPromise.then(
-          function (response) {
-            console.log(response) // Success
-            cleanup()
-            props.add(response)
-          },
-          function (error) {
-            console.log(error) // Failure
-          }
-        )
-      })
-      .catch((err) => {})
+      dbPromise.then(
+        function (response) {
+          console.log(response) // Success
+          cleanup()
+          props.add(response)
+        },
+        function (error) {
+          console.log(error) // Failure
+        }
+      )
+    }
   }
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
