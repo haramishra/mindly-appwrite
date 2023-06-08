@@ -13,7 +13,7 @@ import {
 } from "../appwrite/config"
 import useGetCurrentUser from "../hooks/account/use-get-current-account-hook"
 import { Button } from "../ui/button"
-import AddPost from "./addPost"
+import AddPost from "./add-post"
 import { PostsCard } from "./posts-card"
 import RightContainer from "./right-container"
 
