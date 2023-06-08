@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge"
 
-function PostContent(props: { content: string; title: string }) {
+function PostCardContent(props: { content: string; title: string }) {
   return (
     <div>
       <div className="mb-4">
@@ -31,4 +31,4 @@ function PostContent(props: { content: string; title: string }) {
   )
 }
 
-export default PostContent
+export default PostCardContent

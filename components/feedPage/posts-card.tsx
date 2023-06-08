@@ -10,7 +10,7 @@ import {
 
 import AvatarWithUID from "./avatar"
 import PostsBUttons from "./posts-card-footer"
-import PostContent from "./posts-content"
+import PostCardContent from "./posts-content"
 
 export function PostsCard(props: Post) {
   return (
@@ -21,7 +21,7 @@ export function PostsCard(props: Post) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <PostContent content={props.content} title={props.title} />
+        <PostCardContent content={props.content} title={props.title} />
       </CardContent>
       <CardFooter>
         <PostsBUttons />
