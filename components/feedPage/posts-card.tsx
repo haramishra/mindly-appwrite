@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import { Post } from "@/types/post"
 import {
   Card,
@@ -14,18 +16,20 @@ import PostCardContent from "./posts-content"
 
 export function PostsCard(props: Post) {
   return (
-    <Card className="max-w-2xl">
-      <CardHeader>
-        <CardTitle>
-          <AvatarWithUID />
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <PostCardContent content={props.content} title={props.title} />
-      </CardContent>
-      <CardFooter>
-        <PostsBUttons />
-      </CardFooter>
-    </Card>
+    <Link href={`/feed/${props.$id}`}>
+      <Card className="max-w-2xl hover:border-muted-foreground mb-4">
+        <CardHeader>
+          <CardTitle>
+            <AvatarWithUID />
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <PostCardContent content={props.content} title={props.title} />
+        </CardContent>
+        <CardFooter>
+          <PostsBUttons />
+        </CardFooter>
+      </Card>
+    </Link>
   )
 }
