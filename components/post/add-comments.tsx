@@ -22,10 +22,11 @@ import { account, database } from "../appwrite/config"
 import { UserAvatar } from "../feedPage/avatar"
 import useGetCurrentUser from "../hooks/account/use-get-current-account-hook"
 import { Textarea } from "../ui/textarea"
+import { CommentsLoader } from "./loader"
 
 const FormSchema = z.object({
   comment: z.string().max(100, {
-    message: "Username must be less than 2 characters.",
+    message: "Username must be less than 100 characters.",
   }),
 })
 
@@ -45,16 +46,21 @@ export function AddCommnet({
 
   const [user, loading, error] = useGetCurrentUser(account)
 
+  if (loading) {
+    return <CommentsLoader />
+  }
+
   const cleanup = () => {
     form.reset()
   }
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     const { comment } = data
+    console.log(user)
     const body = {
-      userID: "",
-      userName: "",
-      content: "comment",
+      userID: user?.$id,
+      userName: user?.name,
+      content: comment,
       postID: postID,
     }
     if (user) {
@@ -70,20 +76,21 @@ export function AddCommnet({
         function (response) {
           console.log(response) // Success
           cleanup()
-          addComments(response)
+          addComments()
+          console.log(response)
         },
         function (error) {
           console.log(error) // Failure
         }
       )
     }
-    console.log(data)
+    // console.log(data)
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex w-full max-w-full items-start space-x-3">
+        <div className="flex w-5/6 max-w-full items-start space-x-3">
           <div className="mr-4">
             <UserAvatar src="" fallbackText="hi" />
           </div>
@@ -97,7 +104,7 @@ export function AddCommnet({
                   <Input
                     placeholder="Post Your comment"
                     {...field}
-                    className="self-stretch h-12"
+                    className="self-stretch"
                   />
                 </FormControl>
                 <FormDescription>{`${
@@ -107,7 +114,7 @@ export function AddCommnet({
               </FormItem>
             )}
           />
-          <Button type="submit" className="h-12 px-12">
+          <Button type="submit" className=" px-12" variant={"secondary"}>
             Comment
           </Button>
         </div>
