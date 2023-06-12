@@ -7,7 +7,7 @@ import { AddCommnet } from "./add-comments"
 import Comment from "./comment"
 
 function CommentsContainer({ postId }: { postId: string }) {
-  const comments = [
+  const comments: any = [
     // {
     //   $id: "dslfj",
     //   userID: "sldfj",
@@ -61,14 +61,16 @@ function CommentsContainer({ postId }: { postId: string }) {
 
       {comments.length ? (
         <div className="mt-10">
-          {comments.map((item) => (
+          {comments.map((item: any) => (
             <div className="mb-6" key={item.$id}>
               <Comment comment={item} />
             </div>
           ))}
         </div>
       ) : (
-        <div className="flex justify-center items-center mt-12 font-bold text-2xl text-muted-foreground">No comments</div>
+        <div className="flex justify-center items-center mt-12 font-bold text-2xl text-muted-foreground">
+          No comments
+        </div>
       )}
     </div>
   )
