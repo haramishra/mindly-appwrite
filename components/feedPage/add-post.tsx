@@ -96,8 +96,9 @@ function AddPost(props: {
         content: values.content,
         title: values.title,
         userId: props.currentUser.$id,
-        name: props.currentUser.name,
+        userName: props.currentUser.name,
         nsfw: values.nsfw,
+        tag: values.tag,
       }
       console.log(body)
       const dbPromise = database.createDocument(
