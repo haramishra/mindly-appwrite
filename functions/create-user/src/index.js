@@ -105,10 +105,10 @@ module.exports = async function (req, res) {
   }
 
   const name = await updateName()
-  const avatar = await updateAvatar()
+  // const avatar = await updateAvatar()
   const addUser = await addUserCollection()
 
-  const promiseMain = await Promise.all([avatar, name, addUser])
+  const promiseMain = await Promise.all([name, addUser])
 
   return res.json({
     res: promiseMain.toString,
