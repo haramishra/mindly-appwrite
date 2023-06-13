@@ -17,7 +17,7 @@ import PostCardContent from "./posts-content"
 export function PostsCard(props: Post) {
   return (
     <Link href={`/feed/${props.$id}`}>
-      <Card className="max-w-2xl hover:border-muted-foreground mb-4">
+      <Card className="max-w-2xl lg:min-w-[550px] hover:border-muted-foreground mb-4">
         <CardHeader>
           <CardTitle>
             <AvatarWithUID />
