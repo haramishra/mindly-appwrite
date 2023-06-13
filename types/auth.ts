@@ -35,5 +35,5 @@ export type AuthActionHook<M> = [
 ]
 
 export type EmailAndPasswordActionHook = AuthActionHook<
-  (email: string, password: string) => void
+  (email: string, password: string) => Promise<any>
 >

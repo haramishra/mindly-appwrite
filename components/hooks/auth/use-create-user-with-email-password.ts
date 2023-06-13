@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useState } from "react"
 import { ID } from "appwrite"
+import { promise } from "zod"
 
 import { EmailAndPasswordActionHook, UserObject } from "@/types/auth"
 import { FunctionObject } from "@/types/function"
 import { functions } from "@/components/appwrite/config"
+
+import useLoginUserWithEmailPassword from "./use-login-user-with-email-password"
 
 function UseCreateUserWithEmailPassword(
   account: any
@@ -12,48 +15,23 @@ function UseCreateUserWithEmailPassword(
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<undefined | string>(undefined)
 
-  useEffect(() => {
-    if (user) {
-      const promise = functions.createExecution("createUser")
-
-      promise.then(
-        function (response) {
-          console.log(response)
-          return response // Success
-        },
-        function (error) {
-          return error // Failure
-        }
-      )
-    }
-  }, [user])
-
   const createUserWithEmailPassword = useCallback<
-    (email: string, password: string) => void
+    (email: string, password: string) => Promise<any>
   >(
-    (email: string, password: string) => {
+    async (email: string, password: string) => {
       setLoading(true)
-      const promise = account.create(ID.unique(), email, password)
-      promise.then(
-        function (res: UserObject | undefined) {
-          const promise = functions.createExecution("createUser")
 
-          promise.then(
-            function (response) {
-              console.log(response)
-              setUser(res) // Success
-              setLoading(false)
-            },
-            function (error) {
-              setError(error.message)
-            }
-          )
-        },
-        function (error: any) {
-          setError(error.message) // Failure
-          setLoading(false)
-        }
-      )
+      try {
+        const createAccount = await account.create(ID.unique(), email, password)
+        const loginAcocunt = await account.createEmailSession(email, password)
+        const createCollection = await functions
+          .createExecution("createUser")
+          .then((res) => setUser(loginAcocunt))
+      } catch (error: any) {
+        setError(error.message)
+      } finally {
+        setLoading(false)
+      }
     },
     [account]
   )

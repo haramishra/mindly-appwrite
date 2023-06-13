@@ -42,8 +42,6 @@ const formSchema = z
 export function RegisterForm() {
   const [createUserWithEmailPassword, user, loading, error] =
     UseCreateUserWithEmailPassword(account)
-  const [loginUserWithEmailPassword, loginUser, loginLoading, loginError] =
-    useLoginUserWithEmailPassword(account)
 
   const router = useRouter()
 
@@ -58,31 +56,31 @@ export function RegisterForm() {
 
   const [showPassword, setShowPassword] = useState(false)
 
-  console.log(loginError)
+  console.log(error)
 
   // console.log(form.watch("password"))
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    createUserWithEmailPassword(values.email, values.password)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    await createUserWithEmailPassword(values.email, values.password)
     // loginUserWithEmailPassword(values.email, values.password)
   }
 
-  useEffect(() => {
-    if (user) {
-      loginUserWithEmailPassword(
-        form.getValues("email"),
-        form.getValues("password")
-      )
-    }
-  }, [user])
+  // useEffect(() => {
+  //   if (user) {
+  //     loginUserWithEmailPassword(
+  //       form.getValues("email"),
+  //       form.getValues("password")
+  //     )
+  //   }
+  // }, [user])
 
   useEffect(() => {
-    if (loginUser) {
+    if (user) {
       fetch("/api/login", {
         method: "POST",
         body: JSON.stringify({ sessionID: user?.$id }),
       }).then((res) => router.replace("/feed"))
     }
-  }, [loginUser])
+  }, [user])
 
   return (
     <div>
@@ -194,11 +192,7 @@ export function RegisterForm() {
             )}
           />
 
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={loading || loginLoading}
-          >
+          <Button type="submit" className="w-full" disabled={loading}>
             Create account
           </Button>
           <p className="text-md text-muted-foreground text-center">
