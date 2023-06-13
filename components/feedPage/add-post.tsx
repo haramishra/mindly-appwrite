@@ -128,7 +128,7 @@ function AddPost(props: {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex rounded-lg border p-6 gap-3 mb-4">
+        <div className="flex rounded-lg border p-6 gap-3 mb-4 max-w-2xl lg:min-w-[550px]">
           <div className={`${!showInputs && "mt-3"}`}>
             <UserAvatar
               src="https://api.dicebear.com/6.x/lorelei/svg?seed=Spoohky&backgroundType=gradientLinear&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf"
