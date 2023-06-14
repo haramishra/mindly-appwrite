@@ -64,6 +64,17 @@ function TagPage(props: any) {
       // console.log(posts)
     }
   }, [user])
+
+  if (posts.length === 0 || totalPosts === 0) {
+    return (
+      <div className="flex">
+        <h2 className="text-muted-foreground w-4/5 text-center text-2xl font-bold">
+          Oops! No posts found.
+        </h2>
+        <RightContainer />
+      </div>
+    )
+  }
   return (
     <div className="flex gap-8">
       <div>

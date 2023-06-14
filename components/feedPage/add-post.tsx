@@ -46,6 +46,8 @@ const tags = [
   { label: "Question", value: "question" },
   { label: "SOS", value: "sos" },
   { label: "Other", value: "other" },
+  { label: "Happy", value: "happy" },
+  { label: "Good-news", value: "good-news" },
 ] as const
 
 const FormSchema = z.object({
