@@ -4,7 +4,7 @@ import { account } from "@/components/appwrite/config"
 import useGetCurrentUser from "@/components/hooks/account/use-get-current-account-hook"
 
 function withAuth(ChildComponenet: React.FC) {
-  return function (props: any) {
+  return function WithAuth(props: any) {
     const [user, loading, error] = useGetCurrentUser(account)
     const router = useRouter()
 

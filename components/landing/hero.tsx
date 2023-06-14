@@ -36,7 +36,7 @@ function Hero() {
           {/* <!-- Title --> */}
           <div className="mx-auto mt-5 max-w-2xl text-center">
             <h1 className="block text-4xl font-bold text-gray-800 dark:text-gray-200 md:text-5xl lg:text-6xl">
-              Let's Build
+              Let&apos;s Build
               <span className="bg-gradient-to-tl from-blue-600 to-violet-600 bg-clip-text text-transparent">
                 Together
               </span>

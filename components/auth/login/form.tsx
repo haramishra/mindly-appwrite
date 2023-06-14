@@ -154,7 +154,7 @@ export function LoginForm() {
             Login
           </Button>
           <p className="text-md text-center text-muted-foreground">
-            Don't have an account?{" "}
+            Don&apos;t have an account?
             <span className="text-foreground">
               <Link href="/signup">Create here</Link>.
             </span>
