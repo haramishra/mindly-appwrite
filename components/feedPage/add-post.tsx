@@ -54,8 +54,8 @@ const FormSchema = z.object({
     .min(10, {
       message: "Post must be at least 10 characters.",
     })
-    .max(1000, {
-      message: "Post must not be longer than 1000 characters.",
+    .max(5000, {
+      message: "Post must not be longer than 5000 characters.",
     }),
   title: z
     .string()
@@ -183,7 +183,7 @@ function AddPost(props: {
                     {form.watch("content").length > 0 && (
                       <FormDescription>{`${
                         form.watch("content").length
-                      }/1000`}</FormDescription>
+                      }/5000`}</FormDescription>
                     )}
                     <FormMessage />
                   </FormItem>
