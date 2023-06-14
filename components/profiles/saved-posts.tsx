@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import { Query } from "appwrite"
 
 import {
@@ -20,6 +21,16 @@ function SavedPosts() {
   const [offset, setOffset] = useState(0)
   const [user, loading, error] = useGetCurrentUser(account)
   const [totalPosts, setTotalPosts] = useState(0)
+
+  const deleteSavedPost = async (id: string) => {
+    const promise = await database
+      .deleteDocument(MINDLY_DB_DATABASE_ID, SAVED_POSTS_COLLECTION_ID, id)
+      .then(() => {
+        const filteredArray = posts.filter((obj: any) => obj.$id !== id)
+        setPosts(filteredArray)
+        setTotalPosts(totalPosts - 1)
+      })
+  }
 
   // Page 1
   const getPosts = async () => {
@@ -43,7 +54,12 @@ function SavedPosts() {
     const morePosts = await database.listDocuments(
       MINDLY_DB_DATABASE_ID,
       POSTS_COLLECTION_ID,
-      [Query.limit(limit), Query.offset(offset)]
+      [
+        Query.limit(limit),
+        Query.offset(offset),
+        Query.orderDesc("$updatedAt"),
+        Query.equal("userId", [user?.$id || ""]),
+      ]
     )
 
     setPosts([...posts, ...morePosts.documents])
@@ -70,6 +86,8 @@ function SavedPosts() {
             title={post.title}
             postBy={post.postBy}
             createdAt={post.$updatedAt}
+            id={post.$id}
+            deletePost={deleteSavedPost}
           />
         </div>
       ))}
