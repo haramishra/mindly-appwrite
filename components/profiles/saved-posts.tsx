@@ -68,7 +68,7 @@ function SavedPosts() {
             postId={post.postId}
             userId={post.userId}
             title={post.title}
-            postedBy={post.postedBy}
+            postBy={post.postBy}
           />
         </div>
       ))}

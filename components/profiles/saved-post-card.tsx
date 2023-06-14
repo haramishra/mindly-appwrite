@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import { Ghost } from "lucide-react"
 
 import { UserAvatar } from "../feedPage/avatar"
@@ -18,14 +19,16 @@ function SavedPostCard({
   title,
   userId,
   postId,
-  postedBy
+  postBy,
 }: {
   title: string
   userId: string
   postId: string
-  postedBy: string
+  postBy: string
 }) {
-  const avatar = useGetAvatar(postedBy)
+  const avatar = useGetAvatar(postBy)
+
+ 
 
   return (
     <Card className="max-w-2xl lg:min-w-[550px] mb-4 flex items-center justify-between">
