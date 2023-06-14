@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 export function PostLoader() {
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-center space-x-4 border rounded-lg p-8 max-w-2xl lg:min-w-[550px]">
       <div className="space-y-2">
         <Skeleton className="h-6 md:w-[550px] w-[250px]" />
         <div className="h-4 "></div>
