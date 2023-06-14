@@ -70,7 +70,7 @@ function CommentsContainer({ postId }: { postId: string }) {
   }, [postId])
 
   const addComment = (res: any) => {
-    console.log(res)
+    setComments([res, ...comments])
   }
 
   if (loading) {

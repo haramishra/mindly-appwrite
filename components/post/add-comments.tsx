@@ -112,9 +112,9 @@ export function AddCommnet({
                     className="self-stretch"
                   />
                 </FormControl>
-                <FormDescription>{`${
+                {/* <FormDescription>{`${
                   form.watch("comment").length
-                }/100`}</FormDescription>
+                }/100`}</FormDescription> */}
                 <FormMessage />
               </FormItem>
             )}
