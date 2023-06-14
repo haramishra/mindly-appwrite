@@ -4,7 +4,7 @@ const {
   adjectives,
   animals,
 } = require("unique-names-generator")
-const axios = require("axios").default
+// const axios = require("axios").default
 
 /*
     'req' variable has:
@@ -54,19 +54,19 @@ module.exports = async function (req, res) {
       .setSelfSigned(true)
   }
 
-  const updateAvatar = async () => {
-    const seed = APPWRITE_FUNCTION_USER_ID
+  // const updateAvatar = async () => {
+  //   const seed = APPWRITE_FUNCTION_USER_ID
 
-    const diceBearEndPoint = `https://api.dicebear.com/6.x/lorelei/svg?seed=${seed}&backgroundType=gradientLinear&earringsProbability=15&frecklesProbability=10&glassesProbability=15&backgroundColor=ffdfbf,ffd5dc,d1d4f9,c0aede,b6e3f4`
+  //   const diceBearEndPoint = `https://api.dicebear.com/6.x/lorelei/svg?seed=${seed}&backgroundType=gradientLinear&earringsProbability=15&frecklesProbability=10&glassesProbability=15&backgroundColor=ffdfbf,ffd5dc,d1d4f9,c0aede,b6e3f4`
 
-    try {
-      const avatar = await axios.get(diceBearEndPoint)
-      await account.updatePrefs({ avatar: avatar.data })
-      return avatar.data
-    } catch (error) {
-      return "failed async"
-    }
-  }
+  //   try {
+  //     const avatar = await axios.get(diceBearEndPoint)
+  //     await account.updatePrefs({ avatar_seed: seed })
+  //     return seed
+  //   } catch (error) {
+  //     return "failed async"
+  //   }
+  // }
 
   const updateName = async () => {
     const name = uniqueNamesGenerator({
