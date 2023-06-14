@@ -1,17 +1,14 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import { ID } from "appwrite"
-import { promise } from "zod"
 
-import { EmailAndPasswordActionHook, UserObject } from "@/types/auth"
-import { FunctionObject } from "@/types/function"
+import { EmailAndPasswordActionHook } from "@/types/auth"
+import { SessionObject } from "@/types/session"
 import { functions } from "@/components/appwrite/config"
-
-import useLoginUserWithEmailPassword from "./use-login-user-with-email-password"
 
 function UseCreateUserWithEmailPassword(
   account: any
 ): EmailAndPasswordActionHook {
-  const [user, setUser] = useState<undefined | UserObject>(undefined)
+  const [user, setUser] = useState<undefined | SessionObject>(undefined)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<undefined | string>(undefined)
 

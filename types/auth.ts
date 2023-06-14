@@ -1,3 +1,5 @@
+import { SessionObject } from "./session"
+
 interface HashOptions {
   type: string
   memoryCost: number
@@ -31,7 +33,7 @@ export interface UserObject {
 
 export type AuthActionHook<M> = [
   M,
-  UserObject | undefined,
+  SessionObject | undefined,
   boolean,
   undefined | any
 ]

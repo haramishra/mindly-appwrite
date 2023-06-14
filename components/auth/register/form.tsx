@@ -21,7 +21,6 @@ import { Input } from "@/components/ui/input"
 import { account, functions } from "@/components/appwrite/config"
 import { ErrorAlert } from "@/components/error-alert"
 import UseCreateUserWithEmailPassword from "@/components/hooks/auth/use-create-user-with-email-password"
-import useLoginUserWithEmailPassword from "@/components/hooks/auth/use-login-user-with-email-password"
 
 const formSchema = z
   .object({
@@ -77,8 +76,8 @@ export function RegisterForm() {
     if (user) {
       fetch("/api/login", {
         method: "POST",
-        body: JSON.stringify({ sessionID: user?.$id }),
-      }).then((res) => router.replace("/feed"))
+        body: JSON.stringify({ sessionID: user?.userId }),
+      }).then((res) => router.push("/feed"))
     }
   }, [user])
 
