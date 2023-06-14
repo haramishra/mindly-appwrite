@@ -4,6 +4,7 @@ import { Query } from "appwrite"
 import {
   COMMENTS_COLLECTION_ID,
   MINDLY_DB_DATABASE_ID,
+  account,
   database,
 } from "../appwrite/config"
 import { AddCommnet } from "./add-comments"
@@ -54,7 +55,8 @@ function CommentsContainer({ postId }: { postId: string }) {
     getCommentsPromise.then(
       function (response) {
         setLoading(false)
-        console.log(response) // Success
+        setComments(response.documents)
+        // console.log(response) // Success
       },
       function (error) {
         setLoading(false)
@@ -67,18 +69,19 @@ function CommentsContainer({ postId }: { postId: string }) {
     getComments(postId)
   }, [postId])
 
+  const addComment = (res: any) => {
+    console.log(res)
+  }
+
   if (loading) {
     return <CommentsLoader />
   }
 
   return (
     <div>
-      <AddCommnet
-        addComments={(res: any) => console.log(res, "add")}
-        postID={postId}
-      />
+      <AddCommnet addComments={(res: any) => addComment(res)} postId={postId} />
 
-      {Democomments.length ? (
+      {comments.length ? (
         <div className="mt-10">
           {comments.map((item: any) => (
             <div className="mb-6" key={item.$id}>
