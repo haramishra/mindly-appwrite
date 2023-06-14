@@ -1,4 +1,5 @@
 import Link from "next/link"
+import moment from "moment"
 
 import { Post } from "@/types/post"
 import {
@@ -10,26 +11,33 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
+import { useGetAvatar } from "../hooks/account/use-get-avatar"
 import AvatarWithUID from "./avatar"
 import PostsBUttons from "./posts-card-footer"
 import PostCardContent from "./posts-content"
 
 export function PostsCard(props: Post) {
+  const avatar = useGetAvatar(props.userId)
+
   return (
-    <Link href={`/feed/${props.$id}`}>
-      <Card className="max-w-2xl lg:min-w-[550px] hover:border-muted-foreground mb-4">
+    <Card className="max-w-2xl lg:min-w-[550px] hover:border-muted-foreground mb-4">
+      <Link href={`/feed/${props.$id}`}>
         <CardHeader>
           <CardTitle>
-            <AvatarWithUID />
+            <AvatarWithUID
+              image={avatar}
+              name={props.userName}
+              subtext={moment(props.$createdAt).fromNow()}
+            />
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <PostCardContent content={props.content} title={props.title} />
+          <PostCardContent nsfw={props.nsfw} tag={props.tag} content={props.content} title={props.title} />
         </CardContent>
-        <CardFooter>
-          <PostsBUttons />
-        </CardFooter>
-      </Card>
-    </Link>
+      </Link>
+      <CardFooter>
+        <PostsBUttons />
+      </CardFooter>
+    </Card>
   )
 }
