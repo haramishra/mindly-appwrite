@@ -7,8 +7,10 @@ export interface Post {
   $updatedAt: string
   commentsCount: number
   content: string
-  name: string
+  userName: string
   nsfw: boolean
   title: string
   userId: string
+  tag: string
+  userAvatar: string
 }
