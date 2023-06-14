@@ -16,7 +16,8 @@ function ProfileCard({ user }: { user: UserObject | undefined }) {
 
       <h1 className="pt-5 text-3xl font-semibold">{user?.name}</h1>
 
-      <Separator className="my-10" />
+      <div className="mb-8" />
+      {/* <Separator className="my-10" /> */}
     </div>
   )
 }
