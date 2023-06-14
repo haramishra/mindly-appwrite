@@ -1,6 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import UserPosts from "./posts"
+import SavedPosts from "./saved-posts"
 
 function ContentContainer() {
   return (
@@ -13,7 +14,9 @@ function ContentContainer() {
           <TabsTrigger value="saved">Saved Posts</TabsTrigger>
           <TabsTrigger value="posts">My Posts</TabsTrigger>
         </TabsList>
-        <TabsContent value="saved">saved content</TabsContent>
+        <TabsContent value="saved">
+          <SavedPosts />
+        </TabsContent>
         <TabsContent value="posts">
           <UserPosts />
         </TabsContent>
