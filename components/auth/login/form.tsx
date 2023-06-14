@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { account } from "@/components/appwrite/config"
 import { ErrorAlert } from "@/components/error-alert"
+import useGetCurrentUser from "@/components/hooks/account/use-get-current-account-hook"
 import useLoginUserWithEmailPassword from "@/components/hooks/auth/use-login-user-with-email-password"
 
 const formSchema = z.object({
@@ -29,6 +30,7 @@ const formSchema = z.object({
 //TODO: create a error handler for confirm password
 
 export function LoginForm() {
+  const [currentUser, userloading, usererror] = useGetCurrentUser(account)
   const [loginUserWithEmailPassword, user, loading, error] =
     useLoginUserWithEmailPassword(account)
 
@@ -44,8 +46,11 @@ export function LoginForm() {
 
   const [showPassword, setShowPassword] = useState(false)
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log("submit")
+    if (currentUser) {
+      await account.deleteSession("current")
+    }
     loginUserWithEmailPassword(values.email, values.password)
   }
 
