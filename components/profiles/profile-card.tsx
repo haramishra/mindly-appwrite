@@ -14,7 +14,7 @@ function ProfileCard({ user }: { user: UserObject | undefined }) {
         <AvatarFallback>{""}</AvatarFallback>
       </Avatar>
 
-      <h1 className="pt-5 text-3xl font-semibold">pink_pipp</h1>
+      <h1 className="pt-5 text-3xl font-semibold">{user?.name}</h1>
 
       <Separator className="my-10" />
     </div>
