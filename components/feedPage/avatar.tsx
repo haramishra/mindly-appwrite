@@ -10,8 +10,8 @@ export function UserAvatar(props: { src: string; fallbackText: string }) {
 }
 
 function AvatarWithUID(props: {
-  name: string
-  subtext: string
+  name?: string
+  subtext?: string
   image: string
 }) {
   const getInnitials = (name: string | undefined, fallback: string): string => {
@@ -38,7 +38,7 @@ function AvatarWithUID(props: {
             {props.name ?? "Sofia Davis"}
           </p>
           <p className="text-xs text-muted-foreground">
-            {props.subtext ?? "6hrs ago"}
+            {props.subtext ?? ""}
           </p>
         </div>
       </div>
