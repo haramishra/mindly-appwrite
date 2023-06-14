@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Ghost } from "lucide-react"
+import moment from "moment"
 
 import { UserAvatar } from "../feedPage/avatar"
 import { useGetAvatar } from "../hooks/account/use-get-avatar"
@@ -20,23 +21,25 @@ function SavedPostCard({
   userId,
   postId,
   postBy,
+  createdAt,
 }: {
   title: string
   userId: string
   postId: string
   postBy: string
+  createdAt: string
 }) {
   const avatar = useGetAvatar(postBy)
-
- 
 
   return (
     <Card className="max-w-2xl lg:min-w-[550px] mb-4 flex items-center justify-between">
       <CardHeader>
         <CardTitle className="flex w-full justify-center items-center gap-4">
           <UserAvatar src={avatar} fallbackText="" />
-
-          {title}
+          <div className="flex flex-col gap-u">
+            {title}
+            <CardDescription>{moment(createdAt).fromNow()}</CardDescription>
+          </div>
         </CardTitle>
       </CardHeader>
 

@@ -69,6 +69,7 @@ function SavedPosts() {
             userId={post.userId}
             title={post.title}
             postBy={post.postBy}
+            createdAt={post.$updatedAt}
           />
         </div>
       ))}
