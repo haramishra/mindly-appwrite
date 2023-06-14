@@ -63,15 +63,22 @@ function UserPosts() {
       {posts.map((post: any, i: number) => (
         <div key={i}>
           <PostsCard {...post} />
-          <Button
-            variant={"outline"}
-            className="w-full"
-            onClick={loadMorePosts}
-          >
-            Load more
-          </Button>
         </div>
       ))}
+      {posts.length === totalPosts ? (
+        <Button
+          onClick={loadMorePosts}
+          variant={"outline"}
+          className="w-full"
+          disabled
+        >
+          You have reached the end.
+        </Button>
+      ) : (
+        <Button onClick={loadMorePosts} variant={"outline"} className="w-full">
+          Load more
+        </Button>
+      )}
     </div>
   )
 }
