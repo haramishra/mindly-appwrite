@@ -20,7 +20,7 @@ export function PostsCard(props: Post) {
   const avatar = useGetAvatar(props.userId)
 
   return (
-    <Card className="max-w-2xl lg:min-w-[550px] hover:border-muted-foreground mb-4">
+    <Card className="max-w-2xl lg:min-w-[550px] mb-4">
       <Link href={`/feed/${props.$id}`}>
         <CardHeader>
           <CardTitle>
