@@ -20,22 +20,26 @@ import { Input } from "@/components/ui/input"
 
 import { account, database } from "../appwrite/config"
 import { UserAvatar } from "../feedPage/avatar"
+import { useGetAvatar } from "../hooks/account/use-get-avatar"
 import useGetCurrentUser from "../hooks/account/use-get-current-account-hook"
 import { Textarea } from "../ui/textarea"
 import { CommentsLoader } from "./loader"
 
 const FormSchema = z.object({
-  comment: z.string().max(100, {
-    message: "Username must be less than 100 characters.",
-  }),
+  comment: z
+    .string()
+    .max(100, {
+      message: "Comments must be less than 100 characters.",
+    })
+    .min(2, { message: "Comments must be at least 2 characters long." }),
 })
 
 export function AddCommnet({
   addComments,
-  postID,
+  postId,
 }: {
   addComments: Function
-  postID: string
+  postId: string
 }) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -45,6 +49,7 @@ export function AddCommnet({
   })
 
   const [user, loading, error] = useGetCurrentUser(account)
+  const avatar = useGetAvatar(user?.$id || "")
 
   if (loading) {
     return <CommentsLoader />
@@ -58,10 +63,10 @@ export function AddCommnet({
     const { comment } = data
     console.log(user)
     const body = {
-      userID: user?.$id,
+      userId: user?.$id,
       userName: user?.name,
       content: comment,
-      postID: postID,
+      postId: postId,
     }
     if (user) {
       const dbPromise = database.createDocument(
@@ -76,7 +81,7 @@ export function AddCommnet({
         function (response) {
           console.log(response) // Success
           cleanup()
-          addComments()
+          addComments(response)
           console.log(response)
         },
         function (error) {
@@ -90,9 +95,9 @@ export function AddCommnet({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex w-5/6 max-w-full items-start space-x-3">
+        <div className="flex w-full max-w-full items-start space-x-3">
           <div className="mr-4">
-            <UserAvatar src="" fallbackText="hi" />
+            <UserAvatar src={avatar} fallbackText="" />
           </div>
           <FormField
             control={form.control}
