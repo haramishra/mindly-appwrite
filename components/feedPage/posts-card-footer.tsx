@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation"
 import { ID, Permission, Query, Role } from "appwrite"
 
 import {
@@ -22,6 +23,7 @@ function PostsBUttons({
   currentUser: string
 }) {
   const { toast } = useToast()
+  const router = useRouter()
 
   // userId = user which the saved post list belonges
   // postedBy = user which the post belongs
@@ -93,7 +95,11 @@ function PostsBUttons({
         <Icons.bookmark />
       </Button>
 
-      <Button variant="ghost" className="space-x-2">
+      <Button
+        variant="ghost"
+        onClick={() => router.push(`/feed/${postId}`)}
+        className="space-x-2"
+      >
         <Icons.comments />
       </Button>
 
