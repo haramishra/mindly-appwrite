@@ -13,13 +13,6 @@ import { PostLoader } from "../post/loader"
 import { Button } from "../ui/button"
 
 function UserPosts() {
-  const demoposts = [
-    {
-      userId: "838383",
-      content: "slfdkj",
-      title: "sdklfjsldf",
-    },
-  ]
   const limit = 10
   const [posts, setPosts] = useState<any>([])
   const [offset, setOffset] = useState(0)
@@ -61,13 +54,13 @@ function UserPosts() {
     }
   }, [user])
 
-  if (loading) {
+  if (!posts || loading) {
     return <PostLoader />
   }
 
   return (
     <div>
-      {demoposts.map((post: any, i: number) => (
+      {posts.map((post: any, i: number) => (
         <div key={i}>
           <PostsCard {...post} />
           <Button
