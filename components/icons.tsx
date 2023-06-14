@@ -1,5 +1,6 @@
 import {
   Bookmark,
+  Home,
   LogOut,
   LucideProps,
   MessageCircle,
@@ -22,6 +23,7 @@ export const Icons = {
   logout: LogOut,
   moreVertical: MoreVertical,
   delete: Trash2,
+  home: Home,
   logo: (props: LucideProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
       <path

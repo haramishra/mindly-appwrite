@@ -8,6 +8,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import LoginButton from "./auth/login-button"
 import LogoutButton from "./auth/logout-button"
 import AvatarWithUID, { UserAvatar } from "./feedPage/avatar"
+import HomeButton from "./feedPage/home-button"
 
 export function SiteHeader() {
   const authCookies = cookies().get("auth-session")?.value
@@ -27,6 +28,7 @@ export function SiteHeader() {
             )}
             <div className="flex gap-6">
               <ThemeToggle />
+              {authCookies ? <HomeButton /> : <></>}
               {authCookies ? <LogoutButton /> : <LoginButton />}
             </div>
           </nav>
