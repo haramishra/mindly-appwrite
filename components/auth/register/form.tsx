@@ -84,7 +84,7 @@ export function RegisterForm() {
 
   return (
     <div>
-      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-14">
+      <h1 className="mb-14 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         Create Account
       </h1>
       <div className="mb-5">{!!error && <ErrorAlert>{error}</ErrorAlert>}</div>
@@ -166,7 +166,7 @@ export function RegisterForm() {
               <FormItem>
                 <FormLabel>Confirm password</FormLabel>
                 <FormControl>
-                  <div className="flex justify-end items-end">
+                  <div className="flex items-end justify-end">
                     <Input
                       placeholder="re-enter password"
                       {...field}
@@ -195,7 +195,7 @@ export function RegisterForm() {
           <Button type="submit" className="w-full" disabled={loading}>
             Create account
           </Button>
-          <p className="text-md text-muted-foreground text-center">
+          <p className="text-md text-center text-muted-foreground">
             Already have an account?{" "}
             <span className="text-foreground">
               <Link href="/login">Login here</Link>.

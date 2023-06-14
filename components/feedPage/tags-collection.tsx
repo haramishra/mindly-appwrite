@@ -26,7 +26,7 @@ function TagsCollection(props: TagsCollectionProps) {
         {props.badges.map((item) => (
           <Link href={`/feed/${item}`} key={item}>
             <Badge
-              className="text-sm font-normal m-2 dark:border-slate-400 light:border-slate-600"
+              className="light:border-slate-600 m-2 text-sm font-normal dark:border-slate-400"
               variant="outline"
             >
               {item}

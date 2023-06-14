@@ -85,7 +85,7 @@ function PostsBUttons({
   }
 
   return (
-    <div className="flex justify-between w-full md:px-10 text-slate-400">
+    <div className="flex w-full justify-between text-slate-400 md:px-10">
       <Button
         variant="ghost"
         onClick={() => savePost(currentUser, title, postId, userId)}

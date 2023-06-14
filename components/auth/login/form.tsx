@@ -67,7 +67,7 @@ export function LoginForm() {
 
   return (
     <div>
-      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-14">
+      <h1 className="mb-14 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         Login
       </h1>
       <div className="mb-5">{!!error && <ErrorAlert>{error}</ErrorAlert>}</div>
@@ -125,7 +125,7 @@ export function LoginForm() {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <div className="flex justify-end items-end">
+                  <div className="flex items-end justify-end">
                     <Input
                       placeholder="Password"
                       {...field}
@@ -153,7 +153,7 @@ export function LoginForm() {
           <Button type="submit" className="w-full" disabled={loading}>
             Login
           </Button>
-          <p className="text-md text-muted-foreground text-center">
+          <p className="text-md text-center text-muted-foreground">
             Don't have an account?{" "}
             <span className="text-foreground">
               <Link href="/signup">Create here</Link>.

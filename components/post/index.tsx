@@ -43,7 +43,7 @@ function FeedPost({ postID }: { postID: string }) {
   }, [postID])
 
   return (
-    <div className="md:flex gap-8 ">
+    <div className="gap-8 md:flex ">
       <div className="max-w-2xl lg:min-w-[550px] ">
         {post && <PostContent post={post} />}
         {/* <Separator className="my-8" /> */}

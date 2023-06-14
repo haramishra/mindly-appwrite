@@ -5,10 +5,10 @@ import SavedPosts from "./saved-posts"
 
 function ContentContainer() {
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center justify-center">
       <Tabs
         defaultValue="saved"
-        className="flex flex-col justify-center items-center gap-4"
+        className="flex flex-col items-center justify-center gap-4"
       >
         <TabsList>
           <TabsTrigger value="saved">Saved Posts</TabsTrigger>

@@ -17,7 +17,7 @@ export function MainNav({ items }: MainNavProps) {
   const { theme } = useTheme()
 
   return (
-    <div className="flex gap-6 md:gap-10 items-center">
+    <div className="flex items-center gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
         <Image
           src={theme === "light" ? "/logo-light.png" : "/logo-dark.png"}

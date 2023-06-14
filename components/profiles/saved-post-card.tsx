@@ -42,11 +42,11 @@ function SavedPostCard({
   const avatar = useGetAvatar(postBy)
 
   return (
-    <Card className="max-w-2xl lg:min-w-[550px] mb-4 flex items-center justify-between">
+    <Card className="mb-4 flex max-w-2xl items-center justify-between lg:min-w-[550px]">
       <CardHeader>
-        <CardTitle className="flex w-full justify-center items-center gap-4">
+        <CardTitle className="flex w-full items-center justify-center gap-4">
           <UserAvatar src={avatar} fallbackText="" />
-          <div className="flex flex-col gap-u">
+          <div className="gap-u flex flex-col">
             {title}
             <CardDescription>{moment(createdAt).fromNow()}</CardDescription>
           </div>

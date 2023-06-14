@@ -4,18 +4,18 @@ function Hero() {
   return (
     <section id="hero">
       {/* <!-- Hero --> */}
-      <div className="relative overflow-hidden before:absolute before:top-0 before:left-1/2  before:bg-no-repeat before:bg-top before:bg-cover before:w-full before:h-full before:-z-[1] before:transform before:-translate-x-1/2">
-        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
+      <div className="relative overflow-hidden before:absolute before:left-1/2 before:top-0  before:-z-[1] before:h-full before:w-full before:-translate-x-1/2 before:bg-cover before:bg-top before:bg-no-repeat">
+        <div className="mx-auto max-w-[85rem] px-4 pb-10 pt-24 sm:px-6 lg:px-8">
           {/* <!-- Announcement Banner --> */}
           <div className="flex justify-center">
             <Link
-              className="inline-flex items-center gap-x-2 bg-white border border-gray-200 text-sm text-gray-800 p-1 pl-3 rounded-full transition hover:border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:border-gray-600 dark:text-gray-200"
+              className="inline-flex items-center gap-x-2 rounded-full border border-gray-200 bg-white p-1 pl-3 text-sm text-gray-800 transition hover:border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:border-gray-600"
               href="#"
             >
               PRO release - Join to waitlist
-              <span className="py-2 px-3 inline-flex justify-center items-center gap-x-2 rounded-full bg-gray-200 font-semibold text-sm text-gray-600 dark:bg-gray-700 dark:text-gray-400">
+              <span className="inline-flex items-center justify-center gap-x-2 rounded-full bg-gray-200 px-3 py-2 text-sm font-semibold text-gray-600 dark:bg-gray-700 dark:text-gray-400">
                 <svg
-                  className="w-2.5 h-2.5"
+                  className="h-2.5 w-2.5"
                   width="16"
                   height="16"
                   viewBox="0 0 16 16"
@@ -34,17 +34,17 @@ function Hero() {
           {/* <!-- End Announcement Banner --> */}
 
           {/* <!-- Title --> */}
-          <div className="mt-5 max-w-2xl text-center mx-auto">
-            <h1 className="block font-bold text-gray-800 text-4xl md:text-5xl lg:text-6xl dark:text-gray-200">
+          <div className="mx-auto mt-5 max-w-2xl text-center">
+            <h1 className="block text-4xl font-bold text-gray-800 dark:text-gray-200 md:text-5xl lg:text-6xl">
               Let's Build
-              <span className="bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent">
+              <span className="bg-gradient-to-tl from-blue-600 to-violet-600 bg-clip-text text-transparent">
                 Together
               </span>
             </h1>
           </div>
           {/* <!-- End Title --> */}
 
-          <div className="mt-5 max-w-3xl text-center mx-auto">
+          <div className="mx-auto mt-5 max-w-3xl text-center">
             <p className="text-lg text-gray-600 dark:text-gray-400">
               Preline UI is an open-source set of prebuilt UI components,
               ready-to-use examples and Figma design system based on the
@@ -53,14 +53,14 @@ function Hero() {
           </div>
 
           {/* <!-- Buttons --> */}
-          <div className="mt-8 grid gap-3 w-full sm:inline-flex sm:justify-center">
+          <div className="mt-8 grid w-full gap-3 sm:inline-flex sm:justify-center">
             <Link
-              className="inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-violet-600 hover:to-blue-600 border border-transparent text-white text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white py-3 px-4 dark:focus:ring-offset-gray-800"
+              className="inline-flex items-center justify-center gap-x-3 rounded-md border border-transparent bg-gradient-to-tl from-blue-600 to-violet-600 px-4 py-3 text-center text-sm font-medium text-white hover:from-violet-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800"
               href="#"
             >
               Get started
               <svg
-                className="w-3 h-3"
+                className="h-3 w-3"
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
@@ -77,7 +77,7 @@ function Hero() {
           </div>
           {/* <!-- End Buttons --> */}
 
-          <div className="mt-5 flex justify-center items-center gap-x-1 sm:gap-x-3">
+          <div className="mt-5 flex items-center justify-center gap-x-1 sm:gap-x-3">
             <span className="text-sm text-gray-600 dark:text-gray-400">
               Package Manager:
             </span>
@@ -100,12 +100,12 @@ function Hero() {
               />
             </svg>
             <Link
-              className="inline-flex items-center gap-x-1.5 text-sm text-blue-600 decoration-2 hover:underline font-medium"
+              className="inline-flex items-center gap-x-1.5 text-sm font-medium text-blue-600 decoration-2 hover:underline"
               href="#"
             >
               Installation Guide
               <svg
-                className="w-2.5 h-2.5"
+                className="h-2.5 w-2.5"
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"

@@ -5,7 +5,7 @@ const UserProfile = () => {
   return (
     <>
       <SiteHeader />
-      <section className="container max-w-5xl grid items-center gap-6 pb-8 pt-6 md:py-10"></section>
+      <section className="container grid max-w-5xl items-center gap-6 pb-8 pt-6 md:py-10"></section>
     </>
   )
 }

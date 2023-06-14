@@ -90,7 +90,7 @@ function CommentsContainer({ postId }: { postId: string }) {
           ))}
         </div>
       ) : (
-        <div className="flex justify-center items-center mt-12 font-bold text-2xl text-muted-foreground">
+        <div className="mt-12 flex items-center justify-center text-2xl font-bold text-muted-foreground">
           No comments
         </div>
       )}

@@ -57,7 +57,7 @@ export function FeedPage() {
 
   return (
     <div>
-      <div className="md:flex gap-12">
+      <div className="gap-12 md:flex">
         <div>
           <AddPost
             add={(newPost: Post) => setPosts([newPost, ...posts])}

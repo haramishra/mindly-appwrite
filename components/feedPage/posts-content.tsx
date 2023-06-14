@@ -16,14 +16,14 @@ function PostCardContent(props: {
           <span className="ml-4 space-x-3">
             {props.nsfw && (
               <Badge
-                className="text-sm  font-normal border-red-700 text-red-700"
+                className="border-red-700  text-sm font-normal text-red-700"
                 variant="outline"
               >
                 NSFW
               </Badge>
             )}
             <Badge
-              className="text-sm font-normal dark:border-slate-400 light:border-slate-600"
+              className="light:border-slate-600 text-sm font-normal dark:border-slate-400"
               variant="outline"
             >
               {props.tag}
@@ -31,16 +31,16 @@ function PostCardContent(props: {
           </span>
         </h3>
       </div>
-      <div className="space-y-3 dark:text-slate-50 relative">
+      <div className="relative space-y-3 dark:text-slate-50">
         {!props.nsfw && (
-          <p className="leading-7 whitespace-pre-line [&:not(:first-child)]:mt-3">
+          <p className="whitespace-pre-line leading-7 [&:not(:first-child)]:mt-3">
             {props.content.slice(0, 500)}
           </p>
         )}
 
         {props.nsfw && (
-          <div className="relative h-full whitespace-pre-line w-full">
-            <p className="blur opacity-80">
+          <div className="relative h-full w-full whitespace-pre-line">
+            <p className="opacity-80 blur">
               Donec a commodo mauris. Donec sollicitudin mollis commodo. Nullam
               at nibh ac nisl pretium semper. Praesent nunc dolor, viverra at
               tristique vitae, ullamcorper eget elit. Etiam eleifend ut nibh
@@ -51,10 +51,10 @@ function PostCardContent(props: {
               finibus. Etiam ante sem, varius a accumsan sed, imperdiet nec
               elit. Sed id vulputate odio.
             </p>
-            <div className="text-center absolute top-[30%] m-auto left-0 right-0 space-y-6">
+            <div className="absolute inset-x-0 top-[30%] m-auto space-y-6 text-center">
               <p>This post might contains explicit and triggering content.</p>
               <Button
-                className="hover:border-red-900 hover:bg-transparent px-14"
+                className="px-14 hover:border-red-900 hover:bg-transparent"
                 variant={"outline"}
               >
                 View
@@ -64,7 +64,7 @@ function PostCardContent(props: {
         )}
 
         {props.content.length > 500 && (
-          <div className="absolute bottom-0 bg-gradient-to-t from-background h-28 w-full"></div>
+          <div className="absolute bottom-0 h-28 w-full bg-gradient-to-t from-background"></div>
         )}
       </div>
     </div>

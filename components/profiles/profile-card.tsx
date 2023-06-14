@@ -8,7 +8,7 @@ function ProfileCard({ user }: { user: UserObject | undefined }) {
   const avatar = useGetAvatar(user?.$id || "")
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center justify-center">
       <Avatar className="h-40 w-40">
         <AvatarImage src={avatar || ""} />
         <AvatarFallback>{""}</AvatarFallback>

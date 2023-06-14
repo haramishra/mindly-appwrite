@@ -20,7 +20,7 @@ function PostMenu() {
         {/* <DropdownMenuLabel>Post</DropdownMenuLabel> */}
         {/* <DropdownMenuSeparator /> */}
         <DropdownMenuItem onClick={() => console.log("clicked report")}>
-          <div className="px-6 text-red-600 cursor-pointer">Report user</div>
+          <div className="cursor-pointer px-6 text-red-600">Report user</div>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

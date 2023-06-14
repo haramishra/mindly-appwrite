@@ -37,9 +37,7 @@ function AvatarWithUID(props: {
           <p className="text-sm font-medium leading-none">
             {props.name ?? "Sofia Davis"}
           </p>
-          <p className="text-xs text-muted-foreground">
-            {props.subtext ?? ""}
-          </p>
+          <p className="text-xs text-muted-foreground">{props.subtext ?? ""}</p>
         </div>
       </div>
     </div>

@@ -132,7 +132,7 @@ function AddPost(props: {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex rounded-lg border p-6 gap-3 mb-4 max-w-2xl lg:min-w-[550px]">
+        <div className="mb-4 flex max-w-2xl gap-3 rounded-lg border p-6 lg:min-w-[550px]">
           <div className={`${!showInputs && "mt-3"}`}>
             <UserAvatar
               src={avatar}
@@ -140,7 +140,7 @@ function AddPost(props: {
             />
           </div>
 
-          <div className="w-full flex flex-col gap-3 ">
+          <div className="flex w-full flex-col gap-3 ">
             <div className="space-y-3">
               <FormField
                 control={form.control}
@@ -150,7 +150,7 @@ function AddPost(props: {
                     <FormControl>
                       <Input
                         placeholder="Title of your post"
-                        className={`py-6 px-3 rounded-lg ${
+                        className={`rounded-lg px-3 py-6 ${
                           showInputs ? "block" : "hidden"
                         }`}
                         {...field}

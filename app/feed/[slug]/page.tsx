@@ -7,7 +7,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   return (
     <>
       <SiteHeader />
-      <section className="container max-w-5xl grid items-center gap-6 pb-8 pt-6 md:py-10">
+      <section className="container grid max-w-5xl items-center gap-6 pb-8 pt-6 md:py-10">
         <FeedPost postID={params.slug} />
       </section>
     </>
