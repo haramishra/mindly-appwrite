@@ -54,7 +54,7 @@ function PostCardContent(props: {
             <div className="text-center absolute top-[30%] m-auto left-0 right-0 space-y-6">
               <p>This post might contains explicit and triggering content.</p>
               <Button
-                className="hover:border-red-900 hover:bg-red-900 px-14"
+                className="hover:border-red-900 hover:bg-transparent px-14"
                 variant={"outline"}
               >
                 View

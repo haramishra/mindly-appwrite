@@ -67,7 +67,7 @@ export function FeedPage() {
             <div>
               {posts.map((post: any, i: number) => (
                 <div key={i}>
-                  <PostsCard {...post} />
+                  <PostsCard post={post} currentUser={user?.$id || ""} />
                 </div>
               ))}
             </div>
