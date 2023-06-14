@@ -62,7 +62,7 @@ function UserPosts() {
     <div>
       {posts.map((post: any, i: number) => (
         <div key={i}>
-          <PostsCard {...post} />
+          <PostsCard post={post} currentUser={user?.$id || ""} />
         </div>
       ))}
       {posts.length === totalPosts ? (
