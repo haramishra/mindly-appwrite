@@ -11,6 +11,7 @@ import {
   POSTS_COLLECTION_ID,
   database,
 } from "../appwrite/config"
+import RightContainer from "../feedPage/right-container"
 import { Separator } from "../ui/separator"
 import CommentsContainer from "./comments"
 import PostContent from "./post"
@@ -30,7 +31,7 @@ function FeedPost({ postID }: { postID: string }) {
         console.log(result.documents[0])
         setPost(result.documents[0])
       })
-      .catch((err: Post) => {
+      .catch((err: any) => {
         console.log(err)
       })
   }
@@ -42,11 +43,14 @@ function FeedPost({ postID }: { postID: string }) {
   }, [postID])
 
   return (
-    <>
-      <PostContent content={post?.content || ""} title={post?.title || ""} />
-      <Separator />
-      <CommentsContainer postId="postID" />
-    </>
+    <div className="md:flex gap-8 ">
+      <div className="max-w-2xl lg:min-w-[550px] ">
+        {post && <PostContent post={post} />}
+        {/* <Separator className="my-8" /> */}
+        <CommentsContainer postId="postID" />
+      </div>
+      <RightContainer />
+    </div>
   )
 }
 
