@@ -5,7 +5,9 @@ interface HashOptions {
   threads: number
 }
 
-interface Prefs {}
+interface Prefs {
+  avatar: string
+}
 
 export interface UserObject {
   $id: string
