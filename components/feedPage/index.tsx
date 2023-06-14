@@ -12,6 +12,7 @@ import {
   database,
 } from "../appwrite/config"
 import useGetCurrentUser from "../hooks/account/use-get-current-account-hook"
+import { PostLoader } from "../post/loader"
 import { Button } from "../ui/button"
 import AddPost from "./add-post"
 import { PostsCard } from "./posts-card"
@@ -62,12 +63,35 @@ export function FeedPage() {
             add={(newPost: Post) => setPosts([newPost, ...posts])}
             currentUser={user}
           />
-          {posts.map((post: any, i: number) => (
-            <div key={i}>
-              <PostsCard {...post} />
+          {posts.length > 0 ? (
+            <div>
+              {posts.map((post: any, i: number) => (
+                <div key={i}>
+                  <PostsCard {...post} />
+                </div>
+              ))}
             </div>
-          ))}
-          <Button onClick={loadMorePosts}>Load more</Button>
+          ) : (
+            <PostLoader />
+          )}
+          {posts.length === totalPosts ? (
+            <Button
+              onClick={loadMorePosts}
+              variant={"outline"}
+              className="w-full"
+              disabled
+            >
+              You have reached the end.
+            </Button>
+          ) : (
+            <Button
+              onClick={loadMorePosts}
+              variant={"outline"}
+              className="w-full"
+            >
+              Load more
+            </Button>
+          )}
         </div>
         <RightContainer />
       </div>
