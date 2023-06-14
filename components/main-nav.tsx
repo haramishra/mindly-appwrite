@@ -11,14 +11,18 @@ import { cn } from "@/lib/utils"
 
 interface MainNavProps {
   items?: NavItem[]
+  loggedIn: boolean
 }
 
-export function MainNav({ items }: MainNavProps) {
+export function MainNav({ items, loggedIn }: MainNavProps) {
   const { theme } = useTheme()
 
   return (
     <div className="flex items-center gap-6 md:gap-10">
-      <Link href="/" className="hidden items-center space-x-2 md:flex">
+      <Link
+        href={loggedIn ? "/feed" : "/"}
+        className="hidden items-center space-x-2 md:flex"
+      >
         <Image
           src={theme === "light" ? "/logo-light.png" : "/logo-dark.png"}
           height={48}
