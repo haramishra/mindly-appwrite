@@ -7,7 +7,7 @@ function ContentContainer() {
     <div className="flex flex-col justify-center items-center">
       <Tabs
         defaultValue="saved"
-        className="flex flex-col justify-center items-center"
+        className="flex flex-col justify-center items-center gap-4"
       >
         <TabsList>
           <TabsTrigger value="saved">Saved Posts</TabsTrigger>
