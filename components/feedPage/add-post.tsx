@@ -23,6 +23,7 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import { account, database } from "@/components/appwrite/config"
 
+import { useGetAvatar } from "../hooks/account/use-get-avatar"
 import useAutosizeTextArea from "../hooks/ui/use-auto-height-textarea"
 import { Button } from "../ui/button"
 import { Checkbox } from "../ui/checkbox"
@@ -74,6 +75,7 @@ function AddPost(props: {
   currentUser: UserObject | undefined
 }) {
   const [showInputs, setShowInputs] = useState(false)
+  const avatar = useGetAvatar(props.currentUser?.$id)
 
   const router = useRouter()
 
@@ -99,6 +101,7 @@ function AddPost(props: {
         userName: props.currentUser.name,
         nsfw: values.nsfw,
         tag: values.tag,
+        userAvatar: props.currentUser.$id,
       }
       console.log(body)
       const dbPromise = database.createDocument(
@@ -132,8 +135,8 @@ function AddPost(props: {
         <div className="flex rounded-lg border p-6 gap-3 mb-4 max-w-2xl lg:min-w-[550px]">
           <div className={`${!showInputs && "mt-3"}`}>
             <UserAvatar
-              src="https://api.dicebear.com/6.x/lorelei/svg?seed=Spoohky&backgroundType=gradientLinear&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf"
-              fallbackText="pp"
+              src={avatar}
+              fallbackText={props.currentUser?.name.slice(0, 2) || ""}
             />
           </div>
 
