@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Ghost } from "lucide-react"
 import moment from "moment"
@@ -46,10 +47,12 @@ function SavedPostCard({
       <CardHeader>
         <CardTitle className="flex w-full items-center justify-center gap-4">
           <UserAvatar src={avatar} fallbackText="" />
-          <div className="gap-u flex flex-col">
-            {title}
-            <CardDescription>{moment(createdAt).fromNow()}</CardDescription>
-          </div>
+          <Link href={`/feed/${postId}`}>
+            <div className="gap-u flex flex-col">
+              {title}
+              <CardDescription>{moment(createdAt).fromNow()}</CardDescription>
+            </div>
+          </Link>
         </CardTitle>
       </CardHeader>
 
