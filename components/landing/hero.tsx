@@ -29,11 +29,11 @@ function Hero() {
           </div>
 
           {/* <!-- Buttons --> */}
-          <Link href="/signup">
-            <div className="mt-8 grid w-full gap-3 sm:inline-flex sm:justify-center">
+          <div className="mt-8 grid w-full gap-3 sm:inline-flex sm:justify-center">
+            <Link href="/signup">
               <Button className="px-8">Get Started</Button>
-            </div>
-          </Link>
+            </Link>
+          </div>
           {/* <!-- End Buttons --> */}
         </div>
       </div>
