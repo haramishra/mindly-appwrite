@@ -47,7 +47,7 @@ function FeedPost({ postID }: { postID: string }) {
       <div className="max-w-2xl lg:min-w-[550px] ">
         {post && <PostContent post={post} />}
         {/* <Separator className="my-8" /> */}
-        <CommentsContainer postId="postID" />
+        <CommentsContainer postId={postID} />
       </div>
       <RightContainer />
     </div>
